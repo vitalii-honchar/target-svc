@@ -1,15 +1,12 @@
-import Fastify from 'fastify'
-import routes from './infrastructure/web/routes.mjs'
+import build from './app.mjs'
 
-const fastify = Fastify({
+const fastify = await build({
     logger: {
-        prettyPrint: {
+        'pino-pretty': {
             translateTime: 'HH:MM:ss Z',
             ignore: 'pid,hostname'
         }
     }
 })
-
-fastify.register(routes)
 
 await fastify.listen(3000)
