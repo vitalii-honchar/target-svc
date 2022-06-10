@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/server.mjs",
+    "dev": "fastify start --watch src/server.mjs",
     "test": "jest --config jest.config.js",
     "test:dev": "jest --watchAll"
   },
@@ -13,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "config": "^3.3.6",
-    "fastify": "^4.0.0"
+    "fastify": "^4.0.0",
+    "fastify-plugin": "^3.0.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.2",

@@ -1,10 +1,13 @@
 import {Target} from "../../domain/target.mjs";
-import targetRepository from "../database/target-repository.mjs";
 
-export default async (fastify, options) => {
+export default async (fastify) => {
 
-    fastify.post('/target', async (req, reply) => {
+    fastify.post('/target', async (req) => {
         const target = new Target(null, req.body.description)
-        return targetRepository.create(target);
+        return fastify.targetRepository.create(target);
+    })
+
+    fastify.get('/target', async (req) => {
+        return fastify.targetRepository.findAll()
     })
 }

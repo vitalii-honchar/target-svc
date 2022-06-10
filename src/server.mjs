@@ -2,10 +2,14 @@ import build from './app.mjs'
 
 const fastify = await build({
     logger: {
-        'pino-pretty': {
-            translateTime: 'HH:MM:ss Z',
-            ignore: 'pid,hostname'
+        transport: {
+            target: 'pino-pretty',
+            options: {
+                translateTime: 'HH:MM:ss Z',
+                ignore: 'pid,hostname'
+            }
         }
+
     }
 })
 

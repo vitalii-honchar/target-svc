@@ -25,6 +25,17 @@ describe('test app', () => {
         const target2 = JSON.parse(response2.body)
         expect(target2.id).toEqual(target1.id + 1)
     })
+
+    it('should receive an empty list of targets', async () => {
+        const app = await build()
+        const response = await app.inject({
+            method: 'GET',
+            url: '/target'
+        })
+
+        const targets = JSON.parse(response.body)
+        expect(targets.length).toEqual(0)
+    })
 })
 
 async function createTarget(app, target) {
