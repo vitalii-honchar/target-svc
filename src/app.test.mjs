@@ -20,4 +20,27 @@ describe('test app', () => {
         expect(target.description).toEqual('My target')
         expect(target.id).not.toBeNull()
     })
+
+    it('should create a target with id greater than previous', async () => {
+        const app = await build()
+
+        const response1 = await app.inject({
+            method: 'POST',
+            url: '/target',
+            payload: {
+                description: 'My target'
+            }
+        })
+        const response2 = await app.inject({
+            method: 'POST',
+            url: '/target',
+            payload: {
+                description: 'My target'
+            }
+        })
+
+        const target1 = JSON.parse(response1.body)
+        const target2 = JSON.parse(response2.body)
+        expect(target2.id).toEqual(target1.id + 1)
+    })
 })

@@ -8,14 +8,15 @@ class TargetIsAlreadyCompletedError extends Error {
 
 class Target {
 
-    constructor(description, completed) {
+    constructor(id, description, completed) {
+        this.id = id
         this.description = description
         this.completed = completed
     }
 
     markCompleted() {
         if (!this.completed) {
-            return new Target(this.description, true)
+            return new Target(this.id, this.description, true)
         }
         throw new TargetIsAlreadyCompletedError()
     }
